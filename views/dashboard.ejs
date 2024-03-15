@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <%- include('partials/metaData') -%>
+
+    <body>
+        <%- include('partials/header') -%>
+        <%- include('partials/navbar') -%>
+
+        <% if(Number(fruits.permissions) > 67584) { %>
+            <div class="container">
+                <div class="container-fluid mt-3">
+                    <h1>Welcome back, <%= username %> </h1>
+                    <p>Welcome to the staff exclusive page! This is the page where you can access (Depending on your rank) the pending applications, the supervisor tools, the command list, the rule book and more!</p>
+                </div>
+
+                <!--<div class="container-fluid d-flex flex-wrap p-0 justify-content-around">
+                    <div class="card mb-3" style="width: 18rem;">
+                        <img src="/Images/header.png" class="card-img-top" alt="Header Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Go Visit Fruit's!</h5>
+                            <p class="card-text">Come and join are wonderful cafe game! We have amazing employees and wonderful guests!</p>
+                            <a href="https://www.roblox.com/games/7377194279" class="btn btn-primary">Click Here!</a>
+                        </div>
+                    </div>
+                </div>-->
+                
+                <% if((Number(fruits.permissions) >= 200714178) || (fruits.owner)) { %>
+                    <div class="container-fluid mt-3">
+                        <h1>All Pending Applications</h1>
+                        <p>This is a list of all the currently pending applications!</p>
+                    </div>
+                    <div class="container-fluid d-flex flex-column my-3 gap-3">
+                        <% if((locals.applications != null) && (locals.applications.length > 0)) { %> 
+                            <% for(let i = 0; i < locals.applications.length ? locals.applications.length : 0; i++) { %>
+                                <div class="container p-3 shadow rounded">
+                                    <form action="/dashboard/replyApplication" method="POST">
+                                        <div class="row mb-3">
+                                            <div class="col">
+                                                <label for="DiscordInfo" class="form-label">Discord</label>
+                                                <textarea class="form-control" name="DiscordInfo" id="DiscordInfo" rows="1" readonly><%= locals.applications[i].DiscordInfo %></textarea>
+                                            </div>
+                                            <div class="col">
+                                                <label for="RobloxInfo" class="form-label">Roblox</label>
+                                                <textarea class="form-control" name="RobloxInfo" id="RobloxInfo" rows="1" readonly><%= locals.applications[i].Roblox %></textarea>
+                                            </div>
+                                            <div class="col">
+                                                <label for="UserId" class="form-label">User ID</label>
+                                                <textarea class="form-control" name="UserId" id="UserId" rows="1" readonly><%= locals.applications[i].UserId %></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="ChooseYou" class="form-label">Why Should We Choose You For A Staff Member</label>
+                                            <textarea class="form-control" name="ChooseYou" id="ChooseYou" rows="3" placeholder="<%= locals.applications[i].ChooseYou %>" disabled></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Inpiration" class="form-label">What Inspired You To Work For Us</label>
+                                            <textarea class="form-control" name="Inpiration" id="Inpiration" rows="3" placeholder="<%= locals.applications[i].Inpiration %>" disabled></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Experience" class="form-label">How Much Experience Do You Have For This Role</label>
+                                            <textarea class="form-control" name="Experience" id="Experience" rows="3" placeholder="<%= locals.applications[i].Experience %>" disabled></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="IsTheCustomer" class="form-label">Is The Customer Always Right</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="IsTheCustomer" id="IsTheCustomer" value="Yes" <% if(locals.applications[i].IsTheCustomer == 'Yes') { %> checked <% } %>  disabled>
+                                                <label class="form-check-label" for="IsTheCustomer">Yes</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="IsTheCustomer" id="IsTheCustomer" value="No" <% if(locals.applications[i].IsTheCustomer == 'No') { %> checked <% } %> disabled>
+                                                <label class="form-check-label" for="IsTheCustomer">No</label>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="form-check mb-3">
+                                            <label class="form-check-label" for="Verify">I Answered Everything Truthfully</label>
+                                            <input class="form-controls form-check-input" type="checkbox" name="Verify" id="Verify" value="Yes" checked disabled>
+                                        </div>
+                                        <button type="submit" name="Output" value="<%=i%>, 0" class="btn btn-labeled btn-success"><span class="btn-label"><i class="fa fa-check"></i></span>Accept</button>
+                                        <button type="submit" name="Output" value="<%=i%>, 1" class="btn btn-labeled btn-danger"><span class="btn-label"><i class="fa fa-remove"></i></span>Decline</button>
+                                    </form>
+                                </div>
+                            <% } %>
+                        <% } else { %>
+                            <h3>There are currently no applications available</h3>
+                        <% } %> 
+                    </div>
+                <% } %> 
+            </div>
+        <% } else { %>
+            <h1 class="text-center">You must be a qualififed staff member to view this page <%= username %></h1>
+            <%- include('partials/error') -%>
+        <% } %> 
+    </body>
+
+    <%- include('partials/footer') -%>
+</html>

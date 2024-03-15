@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html land="en">
+    <%- include('partials/metaData') -%>
+
+    <body>
+        <%- include('partials/header') -%>
+        <%- include('partials/navbar') -%>
+
+        <div class="container my-4 p-3 shadow rounded">
+            <form action="applications/send" method="POST">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="DiscordInfo" class="form-label">Discord</label>
+                        <input type="name" class="form-control" name="DiscordInfo" id="DiscordInfo" placeholder="example#0001" pattern=".{2,32}#[0-9]{4}" required>
+                    </div>
+                    <div class="col">
+                        <label for="RobloxInfo" class="form-label">Roblox</label>
+                        <input type="name" class="form-control" name="RobloxInfo" id="RobloxInfo" placeholder="exampleName" pattern="[A-Za-z0-9_]{3,20}" required>
+                    </div>
+                    <div class="form-text">We will verify whether or not your Discord and Roblox match up.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="ChooseYou" class="form-label">Why Should We Choose You For A Staff Member</label>
+                    <textarea class="form-control" name="ChooseYou" id="ChooseYou" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="Inpiration" class="form-label">What Inspired You To Work For Us</label>
+                    <textarea class="form-control" name="Inpiration" id="Inpiration" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="Experience" class="form-label">How Much Experience Do You Have For This Role</label>
+                    <textarea class="form-control" name="Experience" id="Experience" rows="3" placeholder="Please state the groups you have worked for" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="IsTheCustomer" class="form-label">Is The Customer Always Right</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="IsTheCustomer" id="IsTheCustomer" value="Yes">
+                        <label class="form-check-label" for="IsTheCustomer">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="IsTheCustomer" id="IsTheCustomer" value="No" checked>
+                        <label class="form-check-label" for="IsTheCustomer">No</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-check mb-3">
+                    <label class="form-check-label" for="Verify">I Answered Everything Truthfully</label>
+                    <input class="form-controls form-check-input" type="checkbox" name="Verify" id="Verify" value="Yes" required>
+                </div>
+                <button type="submit" value="Add" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </body>
+
+    <%- include('partials/footer') -%>
+</html>

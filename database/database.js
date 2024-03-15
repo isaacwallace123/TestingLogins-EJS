@@ -1,0 +1,2 @@
+const mongoose = require('mongoose');
+module.exports = mongoose.connect('mongodb+srv://Wall-YWebsite:zRZGdd6QgPOrt0Ff@maincluster.e8j2uzf.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
